@@ -1,24 +1,14 @@
-const url = require("url")
-const path = require("path")
-const fs = require("fs")
-// const express = require("express")
-const express = require("./myExpress/express")
+import url from "url"
+import path from "path"
+import fs from "fs"
+import express from "express"
+
+const { fileURLToPath } = url
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const port = 3000
-
-const resData = [
-  {
-    id: 1,
-    name: "小明",
-    age: 18,
-  },
-  {
-    id: 2,
-    name: "小红",
-    age: 19,
-  },
-]
-
 const app = express()
 
 app.use(express.static(path.join(__dirname, "public")))
@@ -32,7 +22,7 @@ app.use((req, res, next) => {
 
 app.get("/api/users", (req, res) => {
   res.setHeader("Content-Type", "application/json")
-  res.end(JSON.stringify(resData))
+  res.end(JSON.stringify([{ name: "sam" }]))
 })
 
 app.post("/api/users", (req, res) => {

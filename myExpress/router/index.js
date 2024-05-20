@@ -85,6 +85,5 @@ proto.handle = function handle(req, res, done) {
 
 proto.use = function use(path, fn) {
   var layer = new Layer(path, fn)
-
   this.stack.push(layer)
 }
